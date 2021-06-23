@@ -45,15 +45,15 @@ const List = mongoose.model("List", listSchema);
 app.get("/", function(req, res) {
   Item.find(function(err, items){
       if (items.length === 0) { // Only insert defaultItems collection if DB empty.
-      Item.insertMany(defaultItems, function(err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Successfully inserted!");
-        }
-      });
-      res.redirect("/"); // Get the items on first reload.
-    } else {
+        Item.insertMany(defaultItems, function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Successfully inserted!");
+          }
+        });
+        res.redirect("/"); // Get the items on first reload.
+      } else {
       //console.log(items);
       res.render("list", {listTitle: "Today", newListItems: items});
     }
